@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-int questionLogic(int answer, int house1, int house2, int house3, int house4);
 
 int main(){
 	// Variable declaration
@@ -16,34 +15,148 @@ int main(){
 	cout << "The Sorting Hat quiz!\n\n";
 
 	// First question
-	for (;;) {
-		cout << "Q1) When I'm dead, I want people to remember me as:\n\n" << "  1) The Good\n" << "  2) The Great\n" << "  3) The Wise\n" << "  4) The Bold\n";
-		cin >> answer1;
-		if (answer1 > 4) {
-			break;
+	logic1:
+		for (;;) {
+			cout << "Q1) When I'm dead, I want people to remember me as:\n\n" << "  1) The Good\n" << "  2) The Great\n" << "  3) The Wise\n" << "  4) The Bold\n";
+			cin >> answer1;
+			if (answer1 <= 4) {
+				break;
+			}
+			else {
+				cout << "Invalid input, try again\n";
+				continue;
+			}
+		}
+	// First question logic
+	if (answer1 == 1) {
+		hufflepuff++;
+	}
+	else if (answer1 == 2) {
+		slytherin++;
+	}
+	else if (answer1 == 3) {
+		ravenclaw++;
+	}
+	else if(answer1 == 4) {
+		gryffindor++;
+	}
+	else {
+		cout << "Invalid input";
+		goto logic1;
+	}
+
+	// Second question
+	logic2:
+		for (;;) {
+			cout << "Q2) Dawn or Dusk?\n\n" << "  1) Dawn\n" << "  2) Dusk\n\n";
+			cin >> answer2;
+			if (answer2 <= 2) {
+				break;
+			}
+			else {
+				cout << "Invalid input, try again\n";
+				continue;
+			}
+		}
+
+	// Second question logic
+	if (answer2 == 1) {
+		gryffindor++;
+		ravenclaw++;
+	}
+	else if (answer2 == 2) {
+		hufflepuff++;
+		slytherin++;
+	}
+	else {
+		cout << "Invalid input";
+		goto logic2;
+	}
+
+	// Third question
+	logic3:
+		for (;;) {
+			cout << "Q3) Which kind of instrument most pleases your ear?\n\n" << "  1) The violin\n" << "  2) The trumpet\n" << "  3) The piano\n" << "  4) The drum\n\n";
+			cin >> answer3;
+			if (answer3 <= 4) {
+				break;
+			}
+			else {
+				cout << "Invalid input, try again\n";
+				continue;
+			}
+		}
+
+	// Third question logic
+		if (answer3 == 1) {
+			slytherin++;
+		}
+		else if (answer3 == 2) {
+			hufflepuff++;
+		}
+		else if (answer3 == 3) {
+			ravenclaw++;
+		}
+		else if (answer3 == 4) {
+			gryffindor++;
 		}
 		else {
-			cout << "Invalid output, try again";
-			continue;
+			cout << "Invalid input";
+			goto logic3;
 		}
-	}
-	//First question logic
-	questionLogic(answer1, hufflepuff, slytherin, ravenclaw, gryffindor);
-	cout << hufflepuff << " " << slytherin << " " << ravenclaw << " " << gryffindor;
-}
 
-int questionLogic(int answer, int house1, int house2, int house3, int house4) {
-	if (answer == 1){
-		house1++;
+	// Fourth question
+	logic4:
+		for (;;) {
+			cout << "Q4) Which road tempts you most?\n\n";
+			cout << "  1) The wide, sunny grassy lane\n" << "  2) The narrow, dark, lantern-lit alley\n";
+			cout << "  3) The twisting , leaf-strewn path through woods\n" << "  4) The cobbled street lined (ancient buildings)\n\n";
+			cin >> answer4;
+			if (answer4 <= 4) {
+				break;
+			}
+			else {
+				cout << "Invalid output, try again\n";
+				continue;
+			}
+		}
+
+		// Fourth question logic
+		if (answer4 == 1) {
+			hufflepuff++;
+		}
+		else if (answer4 == 2) {
+			slytherin++;
+		}
+		else if (answer4 == 3) {
+			gryffindor++;
+		}
+		else if (answer4 == 4) {
+			ravenclaw++;
+		}
+		else {
+			cout << "Invalid input";
+			goto logic4;
+		}
+
+	int max = 0;
+	string house;
+	if (gryffindor > max) {
+		max = gryffindor;
+		house = "Gryffindor";
 	}
-	else if (answer == 2) {
-		house2++;
+	if (hufflepuff > max) {
+		max = hufflepuff;
+		house = "Hufflepuff";
 	}
-	else if (answer == 3) {
-		house3++;
+	if (ravenclaw > max) {
+		max = ravenclaw;
+		house = "Ravenclaw";
 	}
-	else if (answer == 4) {
-		house4++;
+	if (slytherin > max) {
+		max = slytherin;
+		house = "Slytherin";
 	}
-	return;
+
+	cout << house << "!\n";
 }
